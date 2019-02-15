@@ -1,0 +1,15 @@
+version: '2'
+services:
+    areen_app-app:
+        image: areen_app
+        environment:
+            - _JAVA_OPTIONS=-Xmx512m -Xms256m
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:postgresql://areen_app-postgresql:5432/areen_app
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+        ports:
+            - 8080:8080
+    areen_app-postgresql:
+        extends:
+            file: postgresql.yml
+            service: areen_app-postgresql
